@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api, { BASE_URL } from '../lib/api';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Plus, LogOut, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react';
+import { Plus, LogOut, FileText, Clock, CheckCircle, AlertCircle, Menu, X } from 'lucide-react';
 
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { user, logout, isAuthenticated } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, logout, isAuthenticated, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -76,26 +77,48 @@ const Dashboard = () => {
               <p className="text-sm text-muted-foreground">Welcome, {user?.first_name} {user?.last_name}</p>
             </div>
             <div className="flex gap-3">
-              <a
-                href={`${BASE_URL}/admin/`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+              <Link
+                to="/admin"
+                className="hidden sm:inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
               >
-                Admin
-              </a>
-              <Button onClick={() => navigate('/new-request')} className="gap-2">
+                Admin Dashboard
+              </Link>
+              <Button onClick={() => navigate('/new-request')} className="hidden sm:flex gap-2">
                 <Plus className="h-4 w-4" />
                 New Request
               </Button>
-              <Button variant="outline" onClick={handleLogout} className="gap-2">
+              <Button variant="outline" onClick={handleLogout} className="hidden sm:flex gap-2">
                 <LogOut className="h-4 w-4" />
                 Logout
               </Button>
+              <button
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 sm:hidden"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
             </div>
           </div>
         </div>
       </header>
+
+      {mobileMenuOpen && (
+        <div className="border-t border-slate-200 bg-white px-4 py-4 sm:hidden">
+          <div className="flex flex-col gap-4">
+            <Link to="/admin" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>
+              Admin Dashboard
+            </Link>
+            <Button onClick={() => { navigate('/new-request'); setMobileMenuOpen(false); }} className="gap-2 w-full">
+              <Plus className="h-4 w-4" />
+              New Request
+            </Button>
+            <Button variant="outline" onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="gap-2 w-full">
+              <LogOut className="h-4 w-4" />
+              Logout
+            </Button>
+          </div>
+        </div>
+      )}
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {requests.length === 0 ? (
