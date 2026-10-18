@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, Clock3, FileText, ShieldCheck, Tag } from 'lucide-react';
+import { ArrowLeft, Clock3, FileText, ShieldCheck, Tag, Menu, X } from 'lucide-react';
 import api, { BASE_URL } from '../lib/api';
 import { serviceCatalog as importedCatalog } from './Home';
+import Footer from '../components/Footer';
 
 export default function ServiceDetail() {
   const { slug } = useParams();
   const [service, setService] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const loadService = async () => {
@@ -59,9 +61,11 @@ export default function ServiceDetail() {
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-700 to-cyan-500 text-lg font-bold text-white">
-              P
-            </div>
+            <img
+              src="/favicon.png"
+              alt="Public Service Request System logo"
+              className="h-10 w-10 rounded-xl border border-blue-200 bg-white shadow-md shadow-blue-100"
+            />
             <div>
               <div className="text-base font-black text-slate-900">Public Service Request System</div>
               <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">Citizen Portal</div>
@@ -73,17 +77,42 @@ export default function ServiceDetail() {
               href={`${BASE_URL}/admin/`}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+              className="hidden rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 sm:block"
             >
               Admin
             </a>
-            <Link to="/" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
+            <Link to="/" className="hidden sm:inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
               <ArrowLeft className="h-4 w-4" />
+              Back home
+            </Link>
+            <button
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 sm:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {mobileMenuOpen && (
+        <div className="border-t border-slate-200 bg-white px-4 py-4 sm:hidden">
+          <div className="flex flex-col gap-4">
+            <a
+              href={`${BASE_URL}/admin/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-slate-600"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Admin
+            </a>
+            <Link to="/" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>
               Back home
             </Link>
           </div>
         </div>
-      </header>
+      )}
 
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
@@ -160,6 +189,8 @@ export default function ServiceDetail() {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

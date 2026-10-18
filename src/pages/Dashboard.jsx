@@ -6,6 +6,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Plus, LogOut, FileText, Clock, CheckCircle, AlertCircle, Menu, X } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -72,9 +73,16 @@ const Dashboard = () => {
       <header className="bg-white border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">My Service Requests</h1>
-              <p className="text-sm text-muted-foreground">Welcome, {user?.first_name} {user?.last_name}</p>
+            <div className="flex items-center gap-3">
+              <img
+                src="/favicon.png"
+                alt="Public Service Request System logo"
+                className="h-10 w-10 rounded-xl border border-blue-200 bg-white shadow-md shadow-blue-100"
+              />
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">My Service Requests</h1>
+                <p className="text-sm text-muted-foreground">Welcome, {user?.first_name} {user?.last_name}</p>
+              </div>
             </div>
             <div className="flex gap-3">
               <Link
@@ -170,6 +178,8 @@ const Dashboard = () => {
           </div>
         )}
       </main>
+
+      <Footer />
     </div>
   );
 };

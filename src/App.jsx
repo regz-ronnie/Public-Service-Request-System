@@ -6,6 +6,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import ServiceDetail from './pages/ServiceDetail';
 import Login from './pages/Login';
+import AdminLogin from './pages/AdminLogin';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import NewRequest from './pages/NewRequest';
@@ -44,6 +45,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/dashboard"

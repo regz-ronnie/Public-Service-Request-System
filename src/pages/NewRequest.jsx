@@ -9,6 +9,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Select } from '../components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { ArrowLeft, Upload, AlertCircle, Menu, X } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const NewRequest = () => {
   const [formData, setFormData] = useState({
@@ -87,10 +88,17 @@ const NewRequest = () => {
       <header className="bg-white border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <Button variant="ghost" onClick={() => navigate('/dashboard')} className="gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Dashboard
-            </Button>
+            <div className="flex items-center gap-3">
+              <img
+                src="/favicon.png"
+                alt="Public Service Request System logo"
+                className="h-10 w-10 rounded-xl border border-blue-200 bg-white shadow-md shadow-blue-100"
+              />
+              <Button variant="ghost" onClick={() => navigate('/dashboard')} className="gap-2">
+                <ArrowLeft className="h-4 w-4" />
+                Back to Dashboard
+              </Button>
+            </div>
             <div className="flex items-center gap-3">
               <a
                 href={`${ADMIN_BASE_URL}/login/?next=/admin/`}
@@ -239,6 +247,8 @@ const NewRequest = () => {
           </CardContent>
         </Card>
       </main>
+
+      <Footer />
     </div>
   );
 };

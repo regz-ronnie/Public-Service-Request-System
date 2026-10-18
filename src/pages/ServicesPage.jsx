@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BellRing, Building2, FileText, Globe, Landmark, Search, ShieldCheck } from 'lucide-react';
-import api, { BASE_URL } from '../lib/api';
+import { BellRing, Building2, FileText, Globe, Landmark, Search, ShieldCheck, Menu, X } from 'lucide-react';
+import api, { ADMIN_BASE_URL } from '../lib/api';
 import { serviceCatalog as initialCatalog } from './Home';
+import Footer from '../components/Footer';
 
 export default function ServicesPage() {
   const [services, setServices] = useState(initialCatalog);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -38,9 +40,11 @@ export default function ServicesPage() {
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-700 to-cyan-500 text-lg font-bold text-white">
-              P
-            </div>
+            <img
+              src="/favicon.png"
+              alt="Public Service Request System logo"
+              className="h-10 w-10 rounded-xl border border-blue-200 bg-white shadow-md shadow-blue-100"
+            />
             <div>
               <div className="text-base font-black text-slate-900">Public Service Request System</div>
               <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">Citizen Portal</div>
@@ -48,23 +52,47 @@ export default function ServicesPage() {
           </Link>
 
           <div className="flex items-center gap-3">
-            <Link to="/" className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
+            <Link to="/" className="hidden rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:block">
               Home
             </Link>
             <a
               href={`${BASE_URL}/admin/`}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+              className="hidden rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 sm:block"
             >
               Admin
             </a>
-            <Link to="/login" className="rounded-full bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition hover:bg-blue-800">
+            <Link to="/login" className="hidden rounded-full bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition hover:bg-blue-800 sm:block">
               Login
             </Link>
+            <button
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 sm:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
       </header>
+
+      {mobileMenuOpen && (
+        <div className="border-t border-slate-200 bg-white px-4 py-4 sm:hidden">
+          <div className="flex flex-col gap-4">
+            <Link to="/" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+            <a
+              href={`${BASE_URL}/admin/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-slate-600"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Admin
+            </a>
+            <Link to="/login" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Login</Link>
+          </div>
+        </div>
+      )}
 
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -119,6 +147,8 @@ export default function ServicesPage() {
           ))}
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

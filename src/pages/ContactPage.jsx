@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, Clock3, Menu, X } from 'lucide-react';
 import { ADMIN_BASE_URL } from '../lib/api';
+import Footer from '../components/Footer';
 
 const contacts = [
   { icon: Phone, title: 'Call us', value: '+254 20 000 0000' },
@@ -18,9 +19,11 @@ export default function ContactPage() {
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-700 to-cyan-500 text-lg font-bold text-white">
-              P
-            </div>
+            <img
+              src="/favicon.png"
+              alt="Public Service Request System logo"
+              className="h-10 w-10 rounded-xl border border-blue-200 bg-white shadow-md shadow-blue-100"
+            />
             <div>
               <div className="text-base font-black text-slate-900">Public Service Request System</div>
               <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">Citizen Portal</div>
@@ -55,8 +58,6 @@ export default function ContactPage() {
           </div>
         </div>
       )}
-        </div>
-      </header>
 
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
@@ -79,6 +80,8 @@ export default function ContactPage() {
           ))}
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

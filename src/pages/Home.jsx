@@ -21,6 +21,7 @@ import {
   Sparkles,
   X,
 } from 'lucide-react';
+import Footer from '../components/Footer';
 
 export let serviceCatalog = [];
 
@@ -169,25 +170,25 @@ export default function Home() {
             </button>
             <a
               href={`${ADMIN_BASE_URL}/login/?next=/admin/`}
-              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+              className="hidden rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 sm:block"
             >
               Admin Login
             </a>
             <Link
               to="/login"
-              className="rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-50"
+              className="hidden rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-50 sm:block"
             >
               Login
             </Link>
             <Link
               to="/register"
-              className="rounded-full bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition hover:bg-blue-800"
+              className="hidden rounded-full bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition hover:bg-blue-800 sm:block"
             >
               Register
             </Link>
             <button
               type="button"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 lg:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 sm:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -197,7 +198,7 @@ export default function Home() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="border-t border-slate-200 bg-white px-4 py-4 lg:hidden">
+          <div className="border-t border-slate-200 bg-white px-4 py-4 sm:hidden">
             <div className="flex flex-col gap-3 text-sm font-medium text-slate-700">
               <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
               <Link to="/services" onClick={() => setMobileMenuOpen(false)}>Services</Link>
@@ -205,6 +206,8 @@ export default function Home() {
               <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
               <a href={`${ADMIN_BASE_URL}/login/?next=/admin/`} onClick={() => setMobileMenuOpen(false)}>Admin Login</a>
+              <Link to="/login" onClick={() => setMobileMenuOpen(false)}>Login</Link>
+              <Link to="/register" onClick={() => setMobileMenuOpen(false)}>Register</Link>
             </div>
           </div>
         )}
@@ -588,69 +591,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer id="contact" className="bg-slate-950 text-slate-300">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1.2fr] lg:px-8">
-          <div>
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 font-black text-white">
-                P
-              </div>
-              <div>
-                <div className="text-lg font-black text-white">Public Service Request System</div>
-                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Citizen Portal</div>
-              </div>
-            </div>
-            <p className="mt-5 max-w-sm text-sm leading-7 text-slate-400">
-              Delivering trusted digital public services to residents with secure access, transparent updates, and clearer communication across service departments.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-white">Quick links</h3>
-            <ul className="mt-5 space-y-3 text-sm">
-              {quickLinks.map((item) => (
-                <li key={item}>
-                  <a href="#services" className="transition hover:text-white">{item}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-white">Support</h3>
-            <ul className="mt-5 space-y-3 text-sm">
-              <li><a href="#about" className="transition hover:text-white">About us</a></li>
-              <li><a href="#process" className="transition hover:text-white">How it works</a></li>
-              <li><a href="/login" className="transition hover:text-white">Sign in</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-white">Contact</h3>
-            <div className="mt-5 space-y-3 text-sm text-slate-300">
-              <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-blue-300" />
-                <span>+1 (800) 555-0145</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Globe className="h-4 w-4 text-blue-300" />
-                <span>portal.publicservice.gov</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-slate-800">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-slate-400 sm:px-6 lg:flex-row lg:px-8">
-            <span>© 2026 Public Service Request System. All rights reserved.</span>
-            <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-white">Privacy</a>
-              <a href="#" className="hover:text-white">Terms</a>
-              <a href="#" className="hover:text-white">Accessibility</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

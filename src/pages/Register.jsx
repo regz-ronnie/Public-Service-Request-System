@@ -7,6 +7,7 @@ import { Label } from '../components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { AlertCircle, Menu, X } from 'lucide-react';
 import { ADMIN_BASE_URL } from '../lib/api';
+import Footer from '../components/Footer';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -53,16 +54,18 @@ const Register = () => {
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-700 to-cyan-500 text-lg font-bold text-white">
-              P
-            </div>
+            <img
+              src="/favicon.png"
+              alt="Public Service Request System logo"
+              className="h-10 w-10 rounded-xl border border-blue-200 bg-white shadow-md shadow-blue-100"
+            />
             <div>
               <div className="text-base font-black text-slate-900">Public Service Request System</div>
               <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">Citizen Portal</div>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
+          <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 sm:flex">
             <Link to="/" className="transition hover:text-blue-700">Home</Link>
             <Link to="/services" className="transition hover:text-blue-700">Services</Link>
             <Link to="/about" className="transition hover:text-blue-700">About</Link>
@@ -80,7 +83,7 @@ const Register = () => {
               Login
             </Link>
             <button
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 md:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 sm:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -90,7 +93,7 @@ const Register = () => {
       </header>
 
       {mobileMenuOpen && (
-        <div className="border-t border-slate-200 bg-white px-4 py-4 md:hidden">
+        <div className="border-t border-slate-200 bg-white px-4 py-4 sm:hidden">
           <div className="flex flex-col gap-4">
             <Link to="/" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Home</Link>
             <Link to="/services" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Services</Link>
@@ -101,8 +104,6 @@ const Register = () => {
           </div>
         </div>
       )}
-        </div>
-      </header>
 
       <main className="flex min-h-[calc(100vh-81px)] items-center justify-center p-4">
         <Card className="w-full max-w-md shadow-xl border-0">
@@ -201,6 +202,8 @@ const Register = () => {
           </CardFooter>
         </Card>
       </main>
+
+      <Footer />
     </div>
   );
 };
