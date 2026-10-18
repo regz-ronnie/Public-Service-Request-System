@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import api, { BASE_URL } from '../lib/api';
+import api, { BASE_URL, ADMIN_BASE_URL } from '../lib/api';
 import {
   ArrowRight,
   BadgeCheck,
@@ -168,12 +168,10 @@ export default function Home() {
               Search
             </button>
             <a
-              href={`${BASE_URL}/admin/`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`${ADMIN_BASE_URL}/login/?next=/admin/`}
               className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
             >
-              Admin
+              Admin Login
             </a>
             <Link
               to="/login"
@@ -206,14 +204,7 @@ export default function Home() {
               <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
               <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-              <a
-                href={`${BASE_URL}/admin/`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Admin
-              </a>
+              <a href={`${ADMIN_BASE_URL}/login/?next=/admin/`} onClick={() => setMobileMenuOpen(false)}>Admin Login</a>
             </div>
           </div>
         )}

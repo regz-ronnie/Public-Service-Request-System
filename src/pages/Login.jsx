@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { ADMIN_BASE_URL } from '../lib/api';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { AlertCircle } from 'lucide-react';
-import { BASE_URL } from '../lib/api';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -54,13 +54,8 @@ const Login = () => {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
-              href={`${BASE_URL}/admin/`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
-            >
-              Admin
+            <a href={`${ADMIN_BASE_URL}/login/?next=/admin/`} className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100">
+              Admin Login
             </a>
             <Link to="/register" className="rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-50">
               Register

@@ -2,6 +2,9 @@ import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://public-service-request-system-backe-khaki.vercel.app/api';
 
+// Admin base URL for Django admin
+const ADMIN_BASE_URL = 'https://public-service-request-system-backe-khaki.vercel.app/admin';
+
 // Remove /api from the base URL for admin link
 const BASE_URL = API_BASE_URL.replace('/api', '');
 
@@ -56,5 +59,5 @@ api.interceptors.response.use(
   }
 );
 
-export { BASE_URL };
+export { BASE_URL, ADMIN_BASE_URL };
 export default api;
