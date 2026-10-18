@@ -34,9 +34,19 @@ export default function AboutPage() {
             </div>
           </Link>
 
-          <Link to="/services" className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
-            Browse services
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link to="/services" className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
+              Browse services
+            </Link>
+            <a
+              href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+            >
+              Admin
+            </a>
+          </div>
         </div>
       </header>
 

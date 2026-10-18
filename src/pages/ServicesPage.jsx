@@ -51,6 +51,14 @@ export default function ServicesPage() {
             <Link to="/" className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
               Home
             </Link>
+            <a
+              href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+            >
+              Admin
+            </a>
             <Link to="/login" className="rounded-full bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition hover:bg-blue-800">
               Login
             </Link>

@@ -76,6 +76,14 @@ const Dashboard = () => {
               <p className="text-sm text-muted-foreground">Welcome, {user?.first_name} {user?.last_name}</p>
             </div>
             <div className="flex gap-3">
+              <a
+                href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+              >
+                Admin
+              </a>
               <Button onClick={() => navigate('/new-request')} className="gap-2">
                 <Plus className="h-4 w-4" />
                 New Request

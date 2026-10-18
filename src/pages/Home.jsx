@@ -167,6 +167,14 @@ export default function Home() {
               <Search className="h-4 w-4" />
               Search
             </button>
+            <a
+              href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+            >
+              Admin
+            </a>
             <Link
               to="/login"
               className="rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-50"
@@ -198,6 +206,14 @@ export default function Home() {
               <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
               <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+              <a
+                href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Admin
+              </a>
             </div>
           </div>
         )}

@@ -112,6 +112,14 @@ const AdminDashboard = () => {
               <p className="text-sm text-muted-foreground">Manage all service requests</p>
             </div>
             <div className="flex gap-3">
+              <a
+                href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+              >
+                Django Admin
+              </a>
               <Button variant="outline" onClick={fetchData} className="gap-2">
                 <RefreshCw className="h-4 w-4" />
                 Refresh
