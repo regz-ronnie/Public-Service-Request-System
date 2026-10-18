@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BadgeCheck, Building2, FileText, ShieldCheck } from 'lucide-react';
-import { BASE_URL } from '../lib/api';
+import { BadgeCheck, Building2, FileText, ShieldCheck, Menu, X } from 'lucide-react';
+import { ADMIN_BASE_URL } from '../lib/api';
 
 const pillars = [
   {
@@ -21,6 +22,8 @@ const pillars = [
 ];
 
 export default function AboutPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md">
@@ -36,18 +39,33 @@ export default function AboutPage() {
           </Link>
 
           <div className="flex items-center gap-3">
-            <Link to="/services" className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
+            <Link to="/services" className="hidden rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:block">
               Browse services
             </Link>
             <a
-              href={`${BASE_URL}/admin/`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+              href={`${ADMIN_BASE_URL}/login/?next=/admin/`}
+              className="hidden rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 sm:block"
             >
               Admin
             </a>
+            <button
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 sm:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
+        </div>
+      </header>
+
+      {mobileMenuOpen && (
+        <div className="border-t border-slate-200 bg-white px-4 py-4 sm:hidden">
+          <div className="flex flex-col gap-4">
+            <Link to="/services" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Browse services</Link>
+            <a href={`${ADMIN_BASE_URL}/login/?next=/admin/`} className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Admin</a>
+          </div>
+        </div>
+      )}
         </div>
       </header>
 
