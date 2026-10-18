@@ -9,5 +9,8 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "env": {
+    "VITE_API_URL": "https://public-service-request-system-backe-khaki.vercel.app/api"
+  }
 }
