@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Clock3, FileText, ShieldCheck, Tag } from 'lucide-react';
-import api from '../lib/api';
+import api, { BASE_URL } from '../lib/api';
 import { serviceCatalog as importedCatalog } from './Home';
 
 export default function ServiceDetail() {
@@ -70,7 +70,7 @@ export default function ServiceDetail() {
 
           <div className="flex items-center gap-3">
             <a
-              href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+              href={`${BASE_URL}/admin/`}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"

@@ -6,6 +6,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { AlertCircle } from 'lucide-react';
+import { BASE_URL } from '../lib/api';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -54,7 +55,7 @@ const Login = () => {
 
           <div className="flex items-center gap-3">
             <a
-              href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+              href={`${BASE_URL}/admin/`}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"

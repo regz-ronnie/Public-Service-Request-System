@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, Clock3 } from 'lucide-react';
+import { BASE_URL } from '../lib/api';
 
 const contacts = [
   { icon: Phone, title: 'Call us', value: '+254 20 000 0000' },
@@ -28,7 +29,7 @@ export default function ContactPage() {
               Explore services
             </Link>
             <a
-              href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+              href={`${BASE_URL}/admin/`}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"

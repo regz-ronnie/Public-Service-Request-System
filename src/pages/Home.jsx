@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../lib/api';
+import api, { BASE_URL } from '../lib/api';
 import {
   ArrowRight,
   BadgeCheck,
@@ -168,7 +168,7 @@ export default function Home() {
               Search
             </button>
             <a
-              href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+              href={`${BASE_URL}/admin/`}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
@@ -207,7 +207,7 @@ export default function Home() {
               <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
               <a
-                href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+                href={`${BASE_URL}/admin/`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BellRing, Building2, FileText, Globe, Landmark, Search, ShieldCheck } from 'lucide-react';
-import api from '../lib/api';
+import api, { BASE_URL } from '../lib/api';
 import { serviceCatalog as initialCatalog } from './Home';
 
 export default function ServicesPage() {
@@ -52,7 +52,7 @@ export default function ServicesPage() {
               Home
             </Link>
             <a
-              href="https://public-service-request-system-backe-khaki.vercel.app/admin/"
+              href={`${BASE_URL}/admin/`}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
