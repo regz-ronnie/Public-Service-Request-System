@@ -6,13 +6,14 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Menu, X } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -54,13 +55,34 @@ const Login = () => {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href={`${ADMIN_BASE_URL}/login/?next=/admin/`} className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100">
+            <a href={`${ADMIN_BASE_URL}/login/?next=/admin/`} className="hidden rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 sm:block">
               Admin Login
             </a>
-            <Link to="/register" className="rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-50">
+            <Link to="/register" className="hidden rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-50 sm:block">
               Register
             </Link>
+            <button
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
+        </div>
+      </header>
+
+      {mobileMenuOpen && (
+        <div className="border-t border-slate-200 bg-white px-4 py-4 md:hidden">
+          <div className="flex flex-col gap-4">
+            <Link to="/" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+            <Link to="/services" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Services</Link>
+            <Link to="/about" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>About</Link>
+            <Link to="/contact" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+            <a href={`${ADMIN_BASE_URL}/login/?next=/admin/`} className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Admin Login</a>
+            <Link to="/register" className="text-sm font-medium text-slate-600" onClick={() => setMobileMenuOpen(false)}>Register</Link>
+          </div>
+        </div>
+      )}
         </div>
       </header>
 
